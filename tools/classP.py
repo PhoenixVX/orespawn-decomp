@@ -10,4 +10,7 @@ filename = args.filename
 os.system(f'javap -v -p danger/orespawn/{filename} > filename_orig.txt')
 os.system(f'javap -v -p orespawn_compiled/danger/orespawn/{filename} > filename.txt')
 
-os.system(f'wsl diff filename_orig.txt filename.txt > filename_diff.txt')
+if (os.name == 'posix'):
+    os.system(f'diff filename_orig.txt filename.txt > filename_diff.txt')
+else:
+    os.system(f'wsl diff filename_orig.txt filename.txt > filename_diff.txt')

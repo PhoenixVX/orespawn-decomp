@@ -6,19 +6,21 @@ import hashlib
 from os import listdir
 from os.path import isfile, join
 filename_debug = ""
+
+output_dir = "./orespawn_compiled"
 try:
-    shutil.rmtree('./orespawn_compiled')
+    shutil.rmtree(output_dir)
 except FileNotFoundError:
     pass
 
-jar_folder = "build/libs"
+jar_folder = "../build/libs"
 jar = "modid-1.0.jar"
 
 shutil.copyfile(f'{jar_folder}/{jar}', f'./{jar}')
 
 with zipfile.ZipFile(f'./{jar}', 'r') as zip_ref:
-    zip_ref.extractall('./orespawn_compiled')
-onlyfiles = [f for f in listdir("danger/orespawn") if isfile(join("danger/orespawn", f))]
+    zip_ref.extractall(output_dir)
+onlyfiles = [f for f in listdir(join(output_dir, "danger/orespawn")) if isfile(join(join(output_dir, "danger/orespawn", f)))]
 
 class BufferedWriter:
     def __init__(self, filename):
@@ -618,19 +620,19 @@ match_count = 0
 for filename in onlyfiles:
     filename_debug = filename
     clazz = None
-    with open(f'orespawn_compiled/danger/orespawn/{filename}', 'rb') as f:
+    with open(f'{output_dir}/danger/orespawn/{filename}', 'rb') as f:
         clazz = ClassFile(SpecialStream(f))
 
-    with open(f'orespawn_compiled/danger/orespawn/{filename}', 'wb+') as f:
+    with open(f'{output_dir}/danger/orespawn/{filename}', 'wb+') as f:
         pass
-    writer = BufferedWriter(f'orespawn_compiled/danger/orespawn/{filename}')
+    writer = BufferedWriter(f'{output_dir}/danger/orespawn/{filename}')
     clazz.save(writer, filename)
     writer.close()
     hash1 = ""
     hash2 = ""
     with open(f'danger/orespawn/{filename}', 'rb') as f:
         hash1 = hashlib.md5(f.read()).hexdigest()
-    with open(f'orespawn_compiled/danger/orespawn/{filename}', 'rb') as f:
+    with open(join(output_dir, f'danger/orespawn/{filename}'), 'rb') as f:
         hash2 = hashlib.md5(f.read()).hexdigest()
     shouldPrintMatches = False
     if hash1 != hash2:

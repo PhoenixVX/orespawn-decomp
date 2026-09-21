@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderHammy implements IItemRenderer {
 	protected ModelHammy modelHammy;
+
 	private static final ResourceLocation texture = new ResourceLocation("orespawn", "AttitudeAdjustertexture.png");
 
 	public RenderHammy()
@@ -18,8 +19,7 @@ public class RenderHammy implements IItemRenderer {
 		this.modelHammy = new ModelHammy();
 	}
 	
-	
-	
+
 	
 	public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type)
 	{

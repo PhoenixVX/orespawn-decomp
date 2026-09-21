@@ -24,6 +24,16 @@ public class WaterBall extends EntityThrowable {
 		super(worldObj, d, e, f);
 	}
 
+
+
+
+
+
+
+
+
+
+	
 	public int getWaterBallIndex() {
 		return this.my_index;
 	}

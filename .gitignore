@@ -45,3 +45,8 @@ tools/diffs.txt
 tools/filename_diff.txt
 tools/filename_orig.txt
 tools/filename.txt
+tools/danger
+tools/orespawn_compiled
+tools/original.txt
+tools/compiled.txt
+tools/*.jar

@@ -18,6 +18,35 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class Cockateil extends EntityAnimal {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	private ChunkCoordinates currentFlightTarget = null;
 	public int birdtype;
 	private boolean killedByPlayer = false;
@@ -32,14 +61,17 @@ public class Cockateil extends EntityAnimal {
 	private int lastZ = 0;
 	private int flyup = 0;
 
+
 	public Cockateil(World par1World) {
 		super(par1World);
+
 		this.setSize(0.5F, 0.5F);
 		this.getNavigator().setAvoidsWater(true);
 		this.experienceValue = 2;
 		this.isImmuneToFire = false;
 		this.fireResistance = 2;
 	}
+
 
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
@@ -68,7 +100,6 @@ public class Cockateil extends EntityAnimal {
 				return null;
 		}
 	}
-
 	protected void entityInit() {
 		super.entityInit();
 		this.birdtype = this.rand.nextInt(6);
@@ -79,6 +110,8 @@ public class Cockateil extends EntityAnimal {
 		return !this.isNoDespawnRequired();
 	}
 
+
+
 	public int getBirdType() {
 		return this.dataWatcher.getWatchableObjectInt(22);
 	}
@@ -87,25 +120,48 @@ public class Cockateil extends EntityAnimal {
 		this.dataWatcher.updateObject(22, par1);
 	}
 
+
+
+
+
 	protected float getSoundVolume() {
 		return 0.55F;
 	}
+
+
+
 
 	protected float getSoundPitch() {
 		return 1.0F;
 	}
 
+
+
+
 	protected String getLivingSound() {
 		return this.worldObj.isDaytime() && !this.worldObj.isRaining() ? "orespawn:birds" : null;
 	}
+
+
+
+
+
+
+
 
 	protected String getHurtSound() {
 		return "orespawn:duck_hurt";
 	}
 
+
+
+
 	protected String getDeathSound() {
 		return "orespawn:duck_hurt";
 	}
+
+
+
 
 	public boolean canBePushed() {
 		return true;
@@ -115,9 +171,16 @@ public class Cockateil extends EntityAnimal {
 		return 2;
 	}
 
+
+
+
 	protected boolean isAIEnabled() {
 		return true;
 	}
+
+
+
+
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
 		Entity e = par1DamageSource.getEntity();
@@ -128,11 +191,15 @@ public class Cockateil extends EntityAnimal {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+
+
+
 	public void onUpdate() {
 		super.onUpdate();
 		if (this.currentFlightTarget == null) {
 			this.currentFlightTarget = new ChunkCoordinates((int)this.posX, (int)this.posY, (int)this.posZ);
-		} else if (this.posY < (double)this.currentFlightTarget.posY) {
+		} 
+		else if (this.posY < (double)this.currentFlightTarget.posY) {
 			this.motionY *= 0.7;
 		} else {
 			this.motionY *= 0.5D;
@@ -140,24 +207,37 @@ public class Cockateil extends EntityAnimal {
 
 	}
 
+
 	public int getAttackStrength(Entity par1Entity) {
 		return 1;
 	}
+
 
 	public void setFlyUp() {
 		this.flyup = 2;
 	}
 
+
+
 	protected void fall(float par1) {
 	}
 
+
+
+
+
+
 	protected void updateFallState(double par1, boolean par3) {
 	}
+
+
+
 
 	public boolean canSeeTarget(double pX, double pY, double pZ) {
 		return this.worldObj.rayTraceBlocks(Vec3.createVectorHelper(this.posX, this.posY + 0.75D, this.posZ), Vec3.createVectorHelper(pX, pY, pZ), false) == null;
 	}
 
+	
 	protected void updateAITasks() {
 		int xdir = 1;
 		int zdir = 1;
